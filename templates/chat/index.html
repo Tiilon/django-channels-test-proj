@@ -1,0 +1,27 @@
+<!-- chat/templates/chat/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Chat Rooms</title>
+</head>
+<body>
+    Welcome  {{user}}<br>
+    Who do you want to chat?
+
+    <ul>
+    {% for connection in connections %}
+        <a href="{% url 'chat_room' connection.id %}">
+            <li>
+                {{connection.id}} 
+                {% if connection.user1 == user %}
+                    {{connection.user2.username}}
+                {% else %}
+                    {{connection.user1.username}}
+                {% endif %}
+            </li>
+        </a>
+    {% endfor %}
+    </ul>
+</body>
+</html>

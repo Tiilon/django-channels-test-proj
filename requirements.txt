@@ -1,0 +1,6 @@
+django
+gunicorn
+channels
+django-cors-headers
+daphne
+channels-redis
