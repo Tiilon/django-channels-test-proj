@@ -31,8 +31,8 @@
 
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
-            const color = data.message.author === parseInt(document.querySelector('#user-id').value) ? 'green' : 'black';
-            const html = '<p><strong style="color: ' + color + ';">' + data.message.author_name + '</strong>: ' + data.message.message + '</p>';
+            const color = data.data.author === parseInt(document.querySelector('#user-id').value) ? 'green' : 'black';
+            const html = '<p><strong style="color: ' + color + ';">' + data.data.author_name + '</strong>: ' + data.data.message + '</p>';
             const chat_log = document.querySelector('#chat-log');
             chat_log.insertAdjacentHTML('beforeend', html);
         };
@@ -52,7 +52,8 @@
             const messageInputDom = document.querySelector('#chat-message-input');
             const message = messageInputDom.value;
             chatSocket.send(JSON.stringify({
-                'message': message
+                'message': message,
+                'source': 'chat.message'
             }));
             messageInputDom.value = '';
         };
